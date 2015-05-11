@@ -9,7 +9,76 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
+ * 
  *= require_tree .
  *= require_self
  */
+
+ .log-in{
+   width: 100%;
+  margin:auto;
+  text-align:center;
+  padding-top:10%;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+ 
+.panel-heading{
+  background-color:#fff;
+}
+ 
+.form-control{
+  width: 90%;
+  text-align: center;
+  margin:auto;
+}
+ 
+.panel-body p{
+  color:#555;
+}
+
+html,body {
+  height:100%;
+  
+}
+body { padding-top: 70px; }
+
+h1 {
+  font-family: Arial,sans-serif;
+  font-size:80px;
+  word-wrap: break-word;
+     -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+     -ms-hyphens: auto;
+     -o-hyphens: auto;
+     hyphens: auto;
+  
+}
+
+.lead {
+	color:#FFFFFF;
+}
+
+
+/* Custom container */
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+  min-height:100%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+}
+
+.container-full a {
+  color:#efefef;
+  text-decoration:none;
+}
+
+.v-center {
+  margin-top:7%;
+}
+  @media screen and (max-width: 768px) {
+    h1{
+        font-size:40px;
+    }
+}

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :wishes
 
   resources :loans
@@ -6,6 +7,28 @@ Rails.application.routes.draw do
   resources :books
 
   resources :users
+  
+  resources :session
+  
+  
+  if :logged_in?
+    root :to => "welcome#index"
+  else
+    root :to => "visitors#index"
+  end
+  
+  get 'session/new'
+  get 'session/create'
+  get 'session/destroy'
+  get "welcome/menuAdmin"
+  get "/visitors/about"
+  get "welcome" => "welcome#index", :as => "welcome"
+  get "visitors" => "visitors#index", :as => "visitors"
+  get "logout" => "session#destroy", :as => "logout"
+  get "login" => "session#new", :as => "login"
+  post "login" => "session#create"
+  get "signup" => "users#new", :as => "signup"
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
