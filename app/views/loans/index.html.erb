@@ -1,0 +1,33 @@
+<h1>Listing loans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>User</th>
+      <th>Physical</th>
+      <th>Loandate</th>
+      <th>Loanreturn</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loans.each do |loan| %>
+      <tr>
+        <td><%= loan.book %></td>
+        <td><%= loan.user %></td>
+        <td><%= loan.physical %></td>
+        <td><%= loan.loandate %></td>
+        <td><%= loan.loanreturn %></td>
+        <td><%= link_to 'Show', loan %></td>
+        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
+        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan', new_loan_path %>
