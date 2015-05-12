@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   
     protected
   def authenticate_user!
-    if logged_in?
+    if !session[:user_id].nil?
+     
     else
       redirect_to login_path, :notice => 'You must be logged-in first'
       ## if you want render 404 page
@@ -45,7 +46,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id])
   end
   # Returns true if the user is logged in, false otherwise.
- def logged_in?
+ def logged_in
     !session[:user_id].nil?
   end
   helper_method :current_user

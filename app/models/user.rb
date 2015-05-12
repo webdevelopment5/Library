@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
-    has_many :loans
-    has_many :wishes
+    validates_uniqueness_of :email
+    has_many :loans , :dependent => :delete_all
+    has_many :wishes , :dependent => :delete_all
+    
 end

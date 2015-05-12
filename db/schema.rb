@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511155515) do
+ActiveRecord::Schema.define(version: 20150512010029) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150511155515) do
     t.boolean  "electronical"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "loaned"
   end
 
   create_table "loans", force: true do |t|
@@ -35,6 +36,19 @@ ActiveRecord::Schema.define(version: 20150511155515) do
 
   add_index "loans", ["book_id"], name: "index_loans_on_book_id"
   add_index "loans", ["user_id"], name: "index_loans_on_user_id"
+
+  create_table "logloans", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.boolean  "physical"
+    t.datetime "loandate"
+    t.datetime "loanreturn"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "logloans", ["book_id"], name: "index_logloans_on_book_id"
+  add_index "logloans", ["user_id"], name: "index_logloans_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

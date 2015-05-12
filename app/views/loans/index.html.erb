@@ -1,33 +1,76 @@
 <h1>Listing loans</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Book</th>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Loans list</div>
+<div class="table-responsive">
+  <!-- Table -->
+  <table class="table table.responsive table-hover">
+    <thead>
+           <tr>
       <th>User</th>
-      <th>Physical</th>
-      <th>Loandate</th>
-      <th>Loanreturn</th>
+      <th>Book</th>
+      <th>LoanDate</th>
+     <th>LoanReturn</th>
+     <th>Format</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @loans.each do |loan| %>
-      <tr>
-        <td><%= loan.book %></td>
-        <td><%= loan.user %></td>
-        <td><%= loan.physical %></td>
-        <td><%= loan.loandate %></td>
-        <td><%= loan.loanreturn %></td>
-        <td><%= link_to 'Show', loan %></td>
-        <td><%= link_to 'Edit', edit_loan_path(loan) %></td>
-        <td><%= link_to 'Destroy', loan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </thead>
+        <tbody>
+          
+           <% if @current_user.role == 'reader' %>
+          <% @loans.each do |loan| %>
+         
+         <% if loan.user.email == @current_user.email %>
+             <tr>
+              <td><%= loan.user.email %></td>
+              <td><%= loan.book.title %></td>
+              <td><%= loan.loandate %></td>
+              <td><%= loan.loanreturn %></td>
+              <% if loan.book.physical? %>
+                <td><%= "Physical" %></td>
+                <% else %>
+                <td><%= "Electronical" %></td>
+                <% end %>
+                 <% end %>
+            </tr>
+            <% end %>
+             <% else %>
+              <% @loans.each do |loan| %>
+         
+             <tr>
+              <td><%= loan.user.email %></td>
+              <td><%= loan.book.title %></td>
+              <td><%= loan.loandate %></td>
+              <td><%= loan.loanreturn %></td>
+              <% if loan.book.physical? %>
+                <td><%= "Physical" %></td>
+                <% else %>
+                <td><%= "Electronical" %></td>
+                <% end %>
+                 
+              
+              <td>
+                <div class="btn-toolbar">
+                  <%= link_to "Show", loan, :class => "btn btn-success" %>
+                   <%= link_to 'Destroy', loan, :class => "btn btn-primary btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+                </div>
+              </td>
+               
+            </tr>
+            <% end %>
+              <% end %>
+        </tbody>
+    
+  </table>
+  </div>
+</div>
 
 <br>
+<% if @current_user.role=='manager' or @current_user.role=='admin' %>
+  <br>
 
-<%= link_to 'New Loan', new_loan_path %>
+  <%=link_to 'New Loan', new_loan_path, :class=> "btn btn-primary btn-info" %>
+
+    <br>
+    <% end %>

@@ -1,3 +1,8 @@
+<div class="container log-in">
+<div class="panel-responsive panel-default">
+<div class="panel-heading">
+<h2>Fill data</h2>
+</div>
 <%= form_for(@loan) do |f| %>
   <% if @loan.errors.any? %>
     <div id="error_explanation">
@@ -10,28 +15,51 @@
       </ul>
     </div>
   <% end %>
+  
+  
+<form class="form-horizontal">
+  <div class="form-group">
+    <%= f.label :user_id %><br>
+    <%= f.select :user_id, @users.collect {|user| [user.email, user.id]} , :class=> "form-control"%>
+  </div>
+  
+  <% @books = Book.all %>
+  <% @booksAvailable ||= Array.new %>
+  
+  <% @books.each do |b| %>
+    <% if b.physical? and Loan.where(:book => b).present? %>
+      
+      <% else %>
+      <% @booksAvailable.push(b) %>
+    <% end %>
+  <% end %>
+  
+  
+  <div class="form-group">
+    <%= f.label :book_id %><br>
+    <%= f.select :book_id, @booksAvailable.collect {|book| [book.title, book.id]} , :class=> "form-control"%>
+  </div>
 
-  <div class="field">
-    <%= f.label :book %><br>
-    <%= f.text_field :book %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :physical %><br>
-    <%= f.check_box :physical %>
-  </div>
-  <div class="field">
+  <% if !@book.nil? %>
+  <div class="form-group">
+    <%= f.label "Libro seleccionado: " + Book.find(@book).title  %> <br />
+   <br /></div>
+   <% end %>
+
+  <div class="form-group">
     <%= f.label :loandate %><br>
     <%= f.datetime_select :loandate %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :loanreturn %><br>
     <%= f.datetime_select :loanreturn %>
   </div>
-  <div class="actions">
+ 
+  </form>
+   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>
+</div>
+</div>

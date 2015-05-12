@@ -4,6 +4,7 @@ class WishesController < ApplicationController
   # GET /wishes
   # GET /wishes.json
   def index
+    @current_user = User.find(session[:user_id])
     @wishes = Wish.all
   end
 
@@ -23,16 +24,19 @@ class WishesController < ApplicationController
 
   # POST /wishes
   # POST /wishes.json
+  
   def create
-    @wish = Wish.new(wish_params)
-
-    respond_to do |format|
+    @current_user = params[:user_id] 
+    @wish = Wish.new
+    @wish.user = User.find_by(params[:user_id])
+    @wish.book = Book.find_by(params[:book_id])
+    
+     respond_to do |format|
       if @wish.save
-        format.html { redirect_to @wish, notice: 'Wish was successfully created.' }
-        format.json { render :show, status: :created, location: @wish }
+       
+        format.html { redirect_to books_path, notice: 'Book added to your wish list' }
       else
-        format.html { render :new }
-        format.json { render json: @wish.errors, status: :unprocessable_entity }
+        format.html { redirect_to books_path, alert: 'Book already in your wish list' }
       end
     end
   end

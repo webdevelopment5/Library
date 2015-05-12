@@ -1,3 +1,4 @@
 class Book < ActiveRecord::Base
-    belongs_to :user
+    has_many :loans, :dependent => :delete_all
+    has_many :wishes, :dependent => :delete_all
 end

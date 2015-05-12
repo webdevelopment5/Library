@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @logloan.user %>
+</p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @logloan.book %>
+</p>
+
+<p>
+  <strong>Physical:</strong>
+  <%= @logloan.physical %>
+</p>
+
+<p>
+  <strong>Loandate:</strong>
+  <%= @logloan.loandate %>
+</p>
+
+<p>
+  <strong>Loanreturn:</strong>
+  <%= @logloan.loanreturn %>
+</p>
+
+<%= link_to 'Edit', edit_logloan_path(@logloan) %> |
+<%= link_to 'Back', logloans_path %>

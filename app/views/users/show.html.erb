@@ -1,24 +1,32 @@
+<% content_for :title, "Library app - User Data" %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">User data</div>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+          <tr>
+            <th>Name</th>
+           
+            
+            <th>E-mail</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+             <tr>
+              <td><%= @user.name %></td>
+              <td><%= @user.email %></td>
+              <td><%= @user.role %></td>
+            </tr>
+        </tbody>
+    
+  </table>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @user.role %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user) ,:class => "btn btn-primary"%> |
+<%= link_to 'Back', users_path, :class => "btn "%>

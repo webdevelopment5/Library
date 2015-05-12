@@ -9,10 +9,10 @@
   <table class="table table.responsive table-hover">
     <thead>
            <tr>
-               <th>Id</th>
+ 
       <th>Name</th>
       <th>E-mail</th>
-      <th>Role</th>
+   
       <% if @current_user.role == 'admin'%>
         <th>Role</th>
       <% end %>
@@ -26,7 +26,14 @@
                <tr>
                 <td><%= user.name %></td>
                 <td><%= user.email %></td>
+                 <td>
+                <div class="btn-toolbar">
+                  <%= link_to "Show", user_path(user), :class => "btn btn-success" %>
+                  <%= link_to "Edit", edit_user_path(user), :class => "btn btn-warning" %>
+                   <%= link_to 'Destroy', user, :class => "btn btn-primary btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
                  
+                </div>
+              </td>
               </tr>
               <% end %>
               <% end %>
@@ -54,7 +61,7 @@
   </table>
   </div>
 </div>
-<% if @current_user.role == 'admin' or @current_user.role == 'manager' %>
+<% if @current_user.role == 'admin' %>
   <br>
 
   <%= link_to 'New User', new_user_path, :class => "btn btn-primary btn-info" %>

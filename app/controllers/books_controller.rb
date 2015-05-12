@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+     @current_user = User.find(session[:user_id])
     @books = Book.all
   end
 

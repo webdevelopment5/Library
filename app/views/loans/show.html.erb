@@ -1,29 +1,43 @@
+<% content_for :title, "Library app - Loan data" %>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Book:</strong>
-  <%= @loan.book %>
-</p>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Loan data</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @loan.user %>
-</p>
+  <!-- Table -->
+  <table class="table">
+    <thead>
+          <tr>
+            <th>Title</th>
+           
+            
+            <th>E-mail</th>
+            <th>Format</th>
+            <th>Loan Date</th>
+            <th>Loan Return</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+             <tr>
+              <td><%= @loan.book.title %></td>
+               <td><%= @loan.user.email %></td>
+              <% if @loan.book.physical? %>
+             <td> <%= "physical" %></td>
+                  <%else%>
+      
+                 <td> <%= "Electronical" %></td>
+                
+                <%end%>
+                
+               <td><%= @loan.loandate %></td>
+                 <td><%= @loan.loanreturn %></td>
+            </tr>
+        </tbody>
+    
+  </table>
+</div>
 
-<p>
-  <strong>Physical:</strong>
-  <%= @loan.physical %>
-</p>
 
-<p>
-  <strong>Loandate:</strong>
-  <%= @loan.loandate %>
-</p>
-
-<p>
-  <strong>Loanreturn:</strong>
-  <%= @loan.loanreturn %>
-</p>
-
-<%= link_to 'Edit', edit_loan_path(@loan) %> |
-<%= link_to 'Back', loans_path %>
+<%= link_to 'Back', loans_path  ,:class => "btn"%>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :logloans
+
+  
+
   resources :wishes
 
   resources :loans
@@ -9,6 +13,8 @@ Rails.application.routes.draw do
   resources :users
   
   resources :session
+  
+  resources :logloans
   
   
   if :logged_in?
