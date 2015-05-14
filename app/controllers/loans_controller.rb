@@ -31,25 +31,8 @@ class LoansController < ApplicationController
   # POST /loans.json
   def create
     @loan = Loan.new(loan_params)
- @book = Book.find_by( params[:book_id] )
-=begin puts @book
-    @ejemplo = params[:user]
-    @loan = Loan.new
-    @loan.book = Book.find_by(@book)
-    @loan.user = User.find_by(id: params[:user])
-    @loan.physical = @physical
-    @loan.loandate = params[:loandate]
-    @loan.loanreturn = params[:loanreturn]
+    @book = Book.find_by( params[:book_id] )
 
- 
- 
- if @book.physical? and Loan.where(:book => @book).present?
-    #@book.loaned = true
-    #@book.save
-    redirect_to books_path, alert: 'Physical book already loaned'
-  else
-  
-=end
     respond_to do |format|
       if @loan.save
         format.html { redirect_to @loan, notice: 'Book successfully borrowed' }

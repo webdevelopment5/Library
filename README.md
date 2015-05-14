@@ -1,3 +1,13 @@
+Library app written by Jose Gomez Checa and Abel Lorente Ramirez. Web System Development ESI-Ciudad Real
+
+Test reader role with this credentials:
+
+Username - reader@reader.com
+password - 12345678
+
+
+
+
 
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
